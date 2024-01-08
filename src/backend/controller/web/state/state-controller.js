@@ -1,5 +1,5 @@
-import StateService from '@/backend/repository/state/state-service';
-import StateDtoMapper from '@/backend/mapper/state-dto-mapper';
+import StateService from '@/backend/service/state-service';
+import StateDtoMapper from './state-dto-mapper';
 
 export default class StateController {
 
@@ -30,7 +30,8 @@ export default class StateController {
     const data = req.body;
     console.log(`[StateController#create] ${JSON.stringify(data)}`);
 
-    const state = StateDtoMapper.toState(data);
+    const stateDto = StateDtoMapper.fromObject(data);
+    const state = StateDtoMapper.toState(stateDto);
 
     await StateService.create(state);
 
@@ -45,7 +46,8 @@ export default class StateController {
     const data = req.body;
     console.log(`[StateController#update] ${id}, ${JSON.stringify(data)}`);
 
-    const state = StateDtoMapper.toState(data);
+    const stateDto = StateDtoMapper.fromObject(data);
+    const state = StateDtoMapper.toState(stateDto);
     state.setId(id);
 
     await StateService.update(state);

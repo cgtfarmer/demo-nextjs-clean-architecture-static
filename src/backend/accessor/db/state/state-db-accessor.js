@@ -1,4 +1,4 @@
-import StateRecordRepository from '@/backend/repository/state-record-repository';
+import StateRecordRepository from '@/backend/repository/state/state-record-repository';
 import StateMapper from './state-mapper';
 
 export default class StateDbAccessor {
@@ -26,7 +26,7 @@ export default class StateDbAccessor {
   static async create(state) {
     console.log(`[StateDbAccessor#create] ${state}`);
 
-    const stateRecord = StateMapper.fromState(state);
+    const stateRecord = StateMapper.toStateRecord(state);
 
     await StateRecordRepository.create(stateRecord);
   }
@@ -34,7 +34,7 @@ export default class StateDbAccessor {
   static async update(state) {
     console.log(`[StateDbAccessor#update] ${state}`);
 
-    const stateRecord = StateMapper.fromState(state);
+    const stateRecord = StateMapper.toStateRecord(state);
 
     await StateRecordRepository.update(stateRecord);
   }

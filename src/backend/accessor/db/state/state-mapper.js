@@ -1,35 +1,33 @@
-import UserRecord from './user-record';
-import User from '@/model/user';
+import StateRecord from '@/backend/repository/state/state-record';
+import State from '@/backend/model/state';
 
 export default class StateMapper {
 
-  static fromUserRecords(userRecords) {
+  static fromStateRecords(stateRecords) {
     const results = [];
 
-    for (let object of userRecords) {
-      results.push(this.fromUserRecord(object));
+    for (let object of stateRecords) {
+      results.push(this.fromStateRecord(object));
     }
 
     return results;
   }
 
-  static fromUserRecord(userRecord) {
-    return new User(
-      userRecord.getId(),
-      userRecord.getFirstName(),
-      userRecord.getLastName(),
-      userRecord.getAge(),
-      userRecord.getWeight(),
-      userRecord.getIncome(),
-      userRecord.getStateId()
+  static fromStateRecord(stateRecord) {
+    console.log(`[StateMapper#fromStateRecord] ${JSON.stringify(stateRecord)}`);
+
+    return new State(
+      stateRecord.getId(),
+      stateRecord.getName(),
+      stateRecord.getSymbol()
     );
   }
 
-  static toUserRecords(users) {
+  static toStateRecords(states) {
     const objects = [];
 
-    for (let user of users) {
-      const object = this.toUserRecord(user);
+    for (let state of states) {
+      const object = this.toStateRecord(state);
 
       objects.push(object);
     }
@@ -37,15 +35,11 @@ export default class StateMapper {
     return objects;
   }
 
-  static toUserRecord(user) {
-    return new UserRecord(
-      user.getId(),
-      user.getFirstName(),
-      user.getLastName(),
-      user.getAge(),
-      user.getWeight(),
-      user.getIncome(),
-      user.getStateId()
+  static toStateRecord(state) {
+    return new StateRecord(
+      state.getId(),
+      state.getName(),
+      state.getSymbol()
     );
   }
 }

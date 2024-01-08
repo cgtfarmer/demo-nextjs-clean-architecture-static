@@ -1,7 +1,25 @@
 import StateDto from './state-dto';
-import State from '@/model/state';
+import State from '@/backend/model/state';
 
 export default class StateDtoMapper {
+
+  static fromObjects(objects) {
+    const results = [];
+
+    for (let object of objects) {
+      results.push(this.fromState(object));
+    }
+
+    return results;
+  }
+
+  static fromObject(object) {
+    return new StateDto(
+      object.id,
+      object.name,
+      object.symbol
+    );
+  }
 
   static fromStates(states) {
     const results = [];

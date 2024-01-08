@@ -9,7 +9,7 @@ export default class State {
     this.#name = name;
     this.#symbol = symbol;
 
-		Object.seal(this)
+    Object.seal(this);
   }
 
   getId() {
@@ -37,9 +37,17 @@ export default class State {
   }
 
   toString() {
-    return `State: ` +
+    return 'State: ' +
       `id=${this.#id}, ` +
       `name=${this.#name}, ` +
       `symbol=${this.#symbol}`;
+  }
+
+  toJSON() {
+    return {
+      'id': this.#id,
+      'name': this.#name,
+      'symbol': this.#symbol
+    };
   }
 }

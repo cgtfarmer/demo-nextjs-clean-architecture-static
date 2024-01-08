@@ -1,7 +1,29 @@
 import UserDto from './user-dto';
-import User from '@/model/user';
+import User from '@/backend/model/user';
 
 export default class UserDtoMapper {
+
+  static fromObjects(objects) {
+    const results = [];
+
+    for (let object of objects) {
+      results.push(this.fromUser(object));
+    }
+
+    return results;
+  }
+
+  static fromObject(object) {
+    return new UserDto(
+      object.id,
+      object.firstName,
+      object.lastName,
+      object.age,
+      object.weight,
+      object.income,
+      object.stateId
+    );
+  }
 
   static fromUsers(users) {
     const results = [];

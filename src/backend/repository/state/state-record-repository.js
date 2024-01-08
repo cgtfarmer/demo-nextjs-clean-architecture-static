@@ -1,4 +1,4 @@
-import DbClient from '@/backend/config/db-client';
+import DbClient from '@/backend/client/db-client';
 import StateRecordMapper from './state-record-mapper';
 
 export default class StateRecordRepository {
@@ -13,7 +13,10 @@ export default class StateRecordRepository {
 
     const stateData = results[0];
 
-    const stateRecords = StateRecordMapper.fromObjectCollection(stateData);
+    const stateRecords = StateRecordMapper.fromObjects(stateData);
+
+    console.log('----------------------------------------');
+    console.log(JSON.stringify(stateRecords));
 
     return stateRecords;
   }
@@ -25,7 +28,7 @@ export default class StateRecordRepository {
       SELECT *
       FROM states
       WHERE id = ?
-    `
+    `;
 
     const values = [id];
 

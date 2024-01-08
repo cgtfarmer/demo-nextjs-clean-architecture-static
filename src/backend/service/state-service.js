@@ -1,4 +1,4 @@
-import StateAccessor from '@/backend/repository/state-accessor';
+import StateAccessor from '@/backend/accessor/db/state/state-db-accessor';
 
 export default class StateService {
 

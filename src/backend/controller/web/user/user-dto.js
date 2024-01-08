@@ -17,7 +17,7 @@ export default class UserDto {
     this.#income = income;
     this.#stateId = stateId;
 
-		Object.seal(this)
+    Object.seal(this);
   }
 
   getId() {
@@ -77,7 +77,7 @@ export default class UserDto {
   }
 
   toString() {
-    return `UserDto: ` +
+    return 'UserDto: ' +
       `id=${this.#id}, ` +
       `firstName=${this.#firstName}, ` +
       `lastName=${this.#lastName}, ` +
@@ -85,5 +85,17 @@ export default class UserDto {
       `weight=${this.#weight}, ` +
       `income=${this.#income}, ` +
       `stateId=${this.#stateId}`;
+  }
+
+  toJSON() {
+    return {
+      'id': this.#id,
+      'firstName': this.#firstName,
+      'lastName': this.#lastName,
+      'age': this.#age,
+      'weight': this.#weight,
+      'income': this.#income,
+      'stateId': this.#stateId
+    };
   }
 }

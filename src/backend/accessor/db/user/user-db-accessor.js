@@ -1,4 +1,4 @@
-import UserRecordRepository from '@/backend/repository/user-record-repository';
+import UserRecordRepository from '@/backend/repository/user/user-record-repository';
 import UserMapper from './user-mapper';
 
 export default class UserDbAccessor {
@@ -26,7 +26,7 @@ export default class UserDbAccessor {
   static async create(user) {
     console.log(`[UserDbAccessor#create] ${user}`);
 
-    const userRecord = UserMapper.fromUser(user);
+    const userRecord = UserMapper.toUserRecord(user);
 
     await UserRecordRepository.create(userRecord);
   }
@@ -34,7 +34,7 @@ export default class UserDbAccessor {
   static async update(user) {
     console.log(`[UserDbAccessor#update] ${user}`);
 
-    const userRecord = UserMapper.fromUser(user);
+    const userRecord = UserMapper.toUserRecord(user);
 
     await UserRecordRepository.update(userRecord);
   }

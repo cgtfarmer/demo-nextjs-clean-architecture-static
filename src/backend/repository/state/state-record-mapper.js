@@ -13,6 +13,8 @@ export default class StateRecordMapper {
   }
 
   static fromObject(object) {
+    console.log(`[StateRecordMapper#fromObject] ${JSON.stringify(object)}`);
+
     return new StateRecord(object.id, object.name, object.symbol);
   }
 

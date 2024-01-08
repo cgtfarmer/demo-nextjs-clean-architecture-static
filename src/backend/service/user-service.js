@@ -1,4 +1,4 @@
-import UserAccessor from '@/backend/repository/user-accessor';
+import UserAccessor from '@/backend/accessor/db/user/user-db-accessor';
 
 export default class UserService {
 

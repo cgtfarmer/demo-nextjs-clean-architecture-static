@@ -1,5 +1,5 @@
-import UserService from '@/backend/repository/user/user-service';
-import UserDtoMapper from '@/backend/mapper/user-dto-mapper';
+import UserService from '@/backend/service/user-service';
+import UserDtoMapper from './user-dto-mapper';
 
 export default class UserController {
 
@@ -30,7 +30,8 @@ export default class UserController {
     const data = req.body;
     console.log(`[UserController#create] ${JSON.stringify(data)}`);
 
-    const user = UserDtoMapper.toUser(data);
+    const userDto = UserDtoMapper.fromObject(data);
+    const user = UserDtoMapper.toUser(userDto);
 
     await UserService.create(user);
 
@@ -45,7 +46,8 @@ export default class UserController {
     const data = req.body;
     console.log(`[UserController#update] ${id}, ${JSON.stringify(data)}`);
 
-    const user = UserDtoMapper.toUser(data);
+    const userDto = UserDtoMapper.fromObject(data);
+    const user = UserDtoMapper.toUser(userDto);
     user.setId(id);
 
     await UserService.update(user);

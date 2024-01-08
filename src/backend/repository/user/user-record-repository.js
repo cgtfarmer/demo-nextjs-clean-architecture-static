@@ -1,4 +1,4 @@
-import DbClient from '@/backend/config/db-client';
+import DbClient from '@/backend/client/db-client';
 import UserRecordMapper from './user-record-mapper';
 
 export default class UserRecordRepository {
@@ -25,7 +25,7 @@ export default class UserRecordRepository {
       SELECT *
       FROM users
       WHERE id = ?
-    `
+    `;
 
     const values = [id];
 

@@ -1,5 +1,5 @@
-import UserRecord from './user-record';
-import User from '@/model/user';
+import UserRecord from '@/backend/repository/user/user-record';
+import User from '@/backend/model/user';
 
 export default class UserMapper {
 
