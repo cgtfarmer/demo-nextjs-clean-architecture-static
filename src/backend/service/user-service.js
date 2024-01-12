@@ -2,10 +2,10 @@ import UserAccessor from '@/backend/accessor/db/user/user-db-accessor';
 
 export default class UserService {
 
-  static async findAll() {
-    console.log('[UserService#findAll]');
+  static async findAll(stateId) {
+    console.log(`[UserService#findAll] stateId=${stateId}`);
 
-    const results = await UserAccessor.findAll();
+    const results = await UserAccessor.findAll(stateId);
 
     return results;
   }

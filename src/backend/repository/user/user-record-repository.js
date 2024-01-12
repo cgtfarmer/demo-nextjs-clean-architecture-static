@@ -3,13 +3,17 @@ import UserRecordMapper from './user-record-mapper';
 
 export default class UserRecordRepository {
 
-  static async findAll() {
-    console.log('[UserRecordRepository#findAll]');
+  static async findAll(stateId) {
+    console.log(`[UserRecordRepository#findAll] stateId=${stateId}`);
 
-    const results = await DbClient.executeStatement(`
+    let sql = `
       SELECT *
       FROM users
-    `);
+    `;
+
+    if (stateId != undefined) sql += `WHERE stateId = ${stateId}`;
+
+    const results = await DbClient.executeStatement(sql);
 
     const userData = results[0];
 

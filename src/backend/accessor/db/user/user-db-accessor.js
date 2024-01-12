@@ -3,10 +3,10 @@ import UserMapper from './user-mapper';
 
 export default class UserDbAccessor {
 
-  static async findAll() {
-    console.log('[UserDbAccessor#findAll]');
+  static async findAll(stateId) {
+    console.log(`[UserDbAccessor#findAll] stateId=${stateId}`);
 
-    const results = await UserRecordRepository.findAll();
+    const results = await UserRecordRepository.findAll(stateId);
 
     const users = UserMapper.fromUserRecords(results);
 

@@ -6,7 +6,9 @@ export default class UserController {
   static async index(req, res) {
     console.log('[UserController#index]');
 
-    const users = await UserService.findAll();
+    const { stateId } = req.query;
+
+    const users = await UserService.findAll(stateId);
 
     const response = UserDtoMapper.fromUsers(users);
 
